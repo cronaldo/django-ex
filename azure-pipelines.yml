@@ -10,10 +10,24 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'Openshif Online'
+    cmd: 'oc new-app https://github.com/cronaldo/django-ex.git -l -name=myapp-django'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+#- task: oc-cmd@2
+#  inputs:
+#    connectionType: 'OpenShift Connection Service'
+#    openshiftService: 'Openshif Online'
+#    cmd: 'oc start-build  --follow'
+#- task: oc-cmd@2
+#  inputs:
+#    connectionType: 'OpenShift Connection Service'
+#    openshiftService: 'Openshif Online'
+#    cmd: 'oc start-build nodejs-ex --follow'
+#- task: oc-cmd@2
+#  inputs:
+#    connectionType: 'OpenShift Connection Service'
+#    openshiftService: 'Openshif Online'
+#    cmd: 'oc status'
